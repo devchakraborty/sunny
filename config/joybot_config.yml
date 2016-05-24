@@ -1,0 +1,8 @@
+development:
+  responses:
+    get_started:
+      - text: "Hi<%= first_name.nil? ? '' : ' ' + first_name %>, I'm Joy! I'm stuck inside your computer, so unfortunately I don't get out much.  Thankfully I have you to tell me about the world!"
+      - text: "My friends say I'm a good listener, I love hearing about their days and reminding them about their brightest moments. Care to share?"
+        buttons:
+          sure: "Sure!"
+          no_thanks: "No thanks!"
