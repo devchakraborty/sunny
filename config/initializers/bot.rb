@@ -8,6 +8,8 @@ module Joy
   Facebook::Messenger.config.access_token = ENV['FB_ACCESS_TOKEN']
   Facebook::Messenger.config.verify_token = ENV['FB_VERIFY_TOKEN']
 
+  MESSAGE_TIMEOUT = 5.minutes
+
   @wit_actions = begin
     actions_dict = {
       say: -> (session_id, context, msg) { raise JoyError.new("Should not receive say actions from Wit") },
@@ -29,6 +31,12 @@ module Joy
     at = message.sent_at
     text = message.text
     Rails.logger.info "[ #{sender} @ #{at} ] >> #{text}"
-    @wit.run_actions(sender, text, {})
+
+    if Time.now - at > MESSAGE_TIMEOUT
+      Rails.logger.warn "(Discarding message older than #{MESSAGE_TIMEOUT} seconds)"
+    else
+      @wit.run_actions(sender, text, {})
+    end
+
   end
 end
