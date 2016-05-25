@@ -1,0 +1,2 @@
+class JoyError < StandardError
+end
