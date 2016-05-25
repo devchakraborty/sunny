@@ -24,7 +24,7 @@ module Joy
     def self.message_with_buttons(fb_id, text, buttons)
       Bot.deliver(
         recipient: {
-          id: session_id
+          id: fb_id
         },
         message: {
           attachment: {
