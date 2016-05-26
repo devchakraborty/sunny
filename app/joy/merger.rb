@@ -7,8 +7,14 @@ module Joy
       unless user.present?
         user = Merger.create_user(fb_id)
       end
-      new_context = user.context.merge(context)
-      return new_context
+
+      context.merge!(user.context)
+      user.update(context: context)
+
+      entities.each do |entity_key, guesses|
+        context["just_expressed_#{entity_key}".to_sym] = guesses[0]["value"]
+      end
+      return context
     end
 
     private
