@@ -20,7 +20,4 @@ test:
 
 production:
   <<: *default
-  username: <%= ENV['PRODUCTION_POSTGRES_USERNAME'] %>
-  password: <%= ENV['PRODUCTION_POSTGRES_PASSWORD'] %>
-  host: <%= ENV['PRODUCTION_POSTGRES_HOST'] %>
-  database: <%= ENV['PRODUCTION_POSTGRES_DB'] %>
+  url: <%= ENV['DATABASE_URL'] || ENV['PRODUCTION_DATABASE_URL'] %>
