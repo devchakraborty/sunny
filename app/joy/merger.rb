@@ -9,12 +9,19 @@ module Joy
       end
 
       context.merge!(user.context)
-      user.update(context: context)
-
-      entities.each do |entity_key, guesses|
+      context.merge!(last_user_message: message)
+      entities.each do |entity_key, guesses| # Merge entities into context
         context["just_expressed_#{entity_key}".to_sym] = guesses[0]["value"]
       end
+      user.update_attributes!(context: context)
+
       return context
+    end
+
+    def self.set(fb_id, context)
+      user = User.find_by(fb_id: fb_id)
+      user.update_attributes!(context: context)
+      context
     end
 
     private
