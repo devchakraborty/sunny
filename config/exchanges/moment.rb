@@ -1,20 +1,19 @@
 Joy::Exchange.new :moment do
-  only_if awaiting_moment: true do
+  only_if awaiting_moment: :set do
     store_moment
 
-    only_if awaiting_moment_1: true do
+    only_if awaiting_moment: 1 do
       invoke_first :moment_1
     end
 
-    only_if awaiting_moment_2: true do
+    only_if awaiting_moment: 2 do
       invoke_first :moment_2
     end
 
-    only_if awaiting_moment_3: true do
+    only_if awaiting_moment: 3 do
       invoke_first :moment_3
     end
 
-    set_state :awaiting_yes_no
     unset_state :awaiting_moment
   end
 end

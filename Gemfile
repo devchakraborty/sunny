@@ -20,5 +20,5 @@ group :development do
 end
 
 gem 'facebook-messenger'
-gem 'wit'
 gem 'koala'
+gem 'api-ai-ruby'

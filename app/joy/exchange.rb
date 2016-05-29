@@ -1,6 +1,7 @@
 module Joy
   class Exchange
     attr_reader :messages
+
     def initialize(label, &block)
       @only_if_blocks = []
       @messages = []
@@ -8,6 +9,7 @@ module Joy
       @label = label
       @invoke_first = []
       @stores_moment = false
+      @selects_moment = false
       instance_eval(&block)
       ExchangeRegistry.register(label, self)
       self
@@ -43,6 +45,10 @@ module Joy
       @stores_moment = true
     end
 
+    def select_moment
+      @selects_moment = true
+    end
+
     # NON-DSL
 
     def invoke(fb_id, context)
@@ -51,6 +57,30 @@ module Joy
 
       if @stores_moment
         MomentStorer.store(fb_id, context[:last_user_message])
+      end
+
+      if @selects_moment
+        date = context[:just_expressed_remind_me][:date]
+        date_period = context[:just_expressed_remind_me][:"date-period"]
+
+        selecter = MomentSelecter.new(fb_id)
+
+        if date_period != ""
+          parts = date_period.split("/")
+          date_start = Date.parse(parts[0])
+          date_end = Date.parse(parts[1])
+          selecter.select_date_range date_start, date_end
+        elsif date != ""
+          selecter.select_date Date.parse(date)
+        else
+          selecter.select
+        end
+
+        context[:found_moment] = selecter.moment?
+        if selecter.moment?
+          context[:moment_at] = selecter.moment_at
+          context[:moment_text] = selecter.moment_text
+        end
       end
 
       @invoke_first.each do |label|
@@ -90,6 +120,10 @@ module Joy
         else
           context[state] = value
         end
+      end
+
+      if @selects_moment
+        context.except!(:found_moment, :moment_at, :moment_text)
       end
 
       context

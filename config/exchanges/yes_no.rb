@@ -7,15 +7,15 @@ Joy::Exchange.new :yes_no do
     end
 
     otherwise do
-      only_if awaiting_yes_no_1: true do
+      only_if awaiting_yes_no: 1 do
         invoke_first :yes_no_1
       end
 
-      only_if awaiting_yes_no_2: true do
+      only_if awaiting_yes_no: 2 do
         invoke_first :yes_no_2
       end
 
-      only_if awaiting_yes_no_3: true do
+      only_if awaiting_yes_no: 3 do
         invoke_first :yes_no_3
       end
 

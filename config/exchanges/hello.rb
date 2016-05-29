@@ -12,8 +12,7 @@ Joy::Exchange.new :hello do
 
     set_state :opted_in
     set_state :num_moments, 0
-    set_state :awaiting_yes_no
-    set_state :awaiting_yes_no_1
+    set_state :awaiting_yes_no, 1
   end
 
   only_if opted_in: true do
@@ -21,7 +20,6 @@ Joy::Exchange.new :hello do
       text "Hi #{first_name}! How's your day coming along?"
     end
 
-    set_state :awaiting_moment
-    set_state :awaiting_moment_1
+    set_state :awaiting_moment, 1
   end
 end
