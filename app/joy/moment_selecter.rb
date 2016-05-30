@@ -1,5 +1,6 @@
 module Joy
   class MomentSelecter
+    include ActionView::Helpers::DateHelper
     attr_reader :fb_id
     def initialize(fb_id)
       @fb_id = fb_id
@@ -35,7 +36,7 @@ module Joy
     end
 
     def moment_at
-      @moment.created_at.in_time_zone(timezone).to_formatted_s(:moment_timestamp)
+      "#{time_ago_in_words(@moment.created_at)} ago"
     end
 
     private

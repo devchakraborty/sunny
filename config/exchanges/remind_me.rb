@@ -16,7 +16,7 @@ Joy::Exchange.new :remind_me do
       end
 
       message do
-        text "[ #{moment_at} ] \"#{moment_text}\""
+        text "\"#{moment_text}\"\n\n(#{moment_at})"
       end
     end
 
