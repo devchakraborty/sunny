@@ -25,6 +25,8 @@ class ProcessMessageJob < ActiveJob::Base
         user.context[:just_expressed_yes_no] = result[:parameters][:yes_no]
       when "remind_me"
         user.context[:just_expressed_remind_me] = result[:parameters]
+      when "help"
+        user.context[:just_expressed_help] = true
       else
         user.context[:just_expressed_default] = true
       end
