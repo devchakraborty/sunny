@@ -12,11 +12,11 @@ Joy::Exchange.new :remind_me do
 
     only_if found_moment: true do
       message do
-        text "Hey #{first_name}, for sure! Remember when this happened?:"
+        text "Hey #{first_name}, for sure! Remember this from #{moment_at}?:"
       end
 
       message do
-        text "\"#{moment_text}\"\n\n(#{moment_at})"
+        text "\"#{moment_text}\""
       end
     end
 
