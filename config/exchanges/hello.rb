@@ -17,9 +17,11 @@ Joy::Exchange.new :hello do
 
   only_if opted_in: true do
     message do
-      text "Hi #{first_name}! How's your day coming along?"
+      text "Hi #{first_name}! How are things going? Wanna share?"
+      button :yes, "Sure!"
+      button :no, "No thanks."
     end
 
-    set_state :awaiting_moment, 1
+    set_state :awaiting_yes_no, 1
   end
 end
