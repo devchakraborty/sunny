@@ -24,6 +24,18 @@ Joy::Exchange.new :yes_no do
     end
   end
 
+  only_if awaiting_moment: :set do
+    only_if just_expressed_yes_no: "no" do
+      message do
+        text "Oh okay, that's fine! You can tell me more later."
+      end
+    end
+
+    otherwise do
+      invoke_first :default
+    end
+  end
+
   otherwise do
     invoke_first :default
   end
