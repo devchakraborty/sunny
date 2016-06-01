@@ -15,7 +15,7 @@ class ProcessMessageJob < ActiveJob::Base
 
       if text == "ADMIN_CLEAR_MEMORY"
         user.destroy
-        Messager.message_with_text(fb_id, "[admin] Cleared memory.")
+        Joy::Messager.message_with_text(fb_id, "[admin] Cleared memory.")
         return
       end
 
