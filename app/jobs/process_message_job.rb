@@ -13,7 +13,7 @@ class ProcessMessageJob < ActiveJob::Base
       user = User.find_or_create_by_fb_id(fb_id)
       user.context[:last_user_message] = text
 
-      if text == "ADMIN_CLEAR_MEMORY" do
+      if text == "ADMIN_CLEAR_MEMORY"
         user.destroy
         Messager.message_with_text(fb_id, "[admin] Cleared memory.")
         return
