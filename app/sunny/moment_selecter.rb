@@ -1,4 +1,4 @@
-module Joy
+module Sunny
   class MomentSelecter
     include ActionView::Helpers::DateHelper
     attr_reader :fb_id

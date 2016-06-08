@@ -1,4 +1,4 @@
-Joy::Exchange.new :hello do
+Sunny::Exchange.new :hello do
   only_if opted_in: :unset do
     message do
       text "Hi #{first_name}, I'm Sunny! I'm stuck inside a computer, so unfortunately I don't get out much. Thankfully, I have you to tell me about the world!"

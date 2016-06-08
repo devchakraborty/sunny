@@ -1,4 +1,4 @@
-Joy::Exchange.new :moment do
+Sunny::Exchange.new :moment do
   only_if awaiting_moment: :set do
     store_moment
 

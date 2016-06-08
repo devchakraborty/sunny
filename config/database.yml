@@ -3,9 +3,9 @@ default: &default # local
   encoding: unicode
   pool: 5
   timeout: 5000
-  username: joy
+  username: sunny
   host: localhost
-  database: joy
+  database: sunny
 
 development: &development
   <<: *default
@@ -16,7 +16,7 @@ development: &development
 
 test:
   <<: *development
-  database: joy_test
+  database: sunny_test
 
 production:
   <<: *default

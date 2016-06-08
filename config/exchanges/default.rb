@@ -1,4 +1,4 @@
-Joy::Exchange.new :default do
+Sunny::Exchange.new :default do
   only_if awaiting_yes_no: :set do
     invoke_first :yes_no
   end

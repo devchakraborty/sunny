@@ -15,7 +15,7 @@ class ProcessMessageJob < ActiveJob::Base
 
       if text == "ADMIN_CLEAR_MEMORY"
         user.destroy
-        Joy::Messager.message_with_text(fb_id, "[admin] Cleared memory.")
+        Sunny::Messager.message_with_text(fb_id, "[admin] Cleared memory.")
         return
       end
 
@@ -37,7 +37,7 @@ class ProcessMessageJob < ActiveJob::Base
         user.context[:just_expressed_default] = true
       end
 
-      new_context = Joy::ExchangeRegistry.get(action.to_sym).invoke(fb_id, user.context.with_indifferent_access)
+      new_context = Sunny::ExchangeRegistry.get(action.to_sym).invoke(fb_id, user.context.with_indifferent_access)
 
       user.context = new_context
 

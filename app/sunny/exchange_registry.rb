@@ -1,4 +1,4 @@
-module Joy
+module Sunny
   class ExchangeRegistry
     @registry = {}
 

@@ -1,2 +1,0 @@
-class JoyError < StandardError
-end
