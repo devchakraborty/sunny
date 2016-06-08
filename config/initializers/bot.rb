@@ -1,9 +1,9 @@
-Dir["#{Rails.root}/app/joy/**/*.rb"].each { |file| require file }
+Dir["#{Rails.root}/app/sunny/**/*.rb"].each { |file| require file }
 Dir["#{Rails.root}/config/exchanges/**/*.rb"].each { |file| require file }
 
 Time::DATE_FORMATS[:moment_timestamp] = "%b %-d, %Y  @ %l:%M %p"
 
-module Joy
+module Sunny
 
   include Facebook::Messenger
 

@@ -1,4 +1,4 @@
-Joy::Exchange.new :remind_me do
+Sunny::Exchange.new :remind_me do
   only_if awaiting_yes_no: :set do
     invoke_first :yes_no
   end

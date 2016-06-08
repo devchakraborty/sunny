@@ -1,4 +1,4 @@
-module Joy
+module Sunny
   class Messager
     include Facebook::Messenger
 

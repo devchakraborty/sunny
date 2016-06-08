@@ -1,4 +1,4 @@
-Joy::Exchange.new :moment_1 do
+Sunny::Exchange.new :moment_1 do
   only_if awaiting_moment: 1 do
     message do
       text 'That sounds great! :) Anything else happen?'

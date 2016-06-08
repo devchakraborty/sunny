@@ -1,0 +1,2 @@
+class SunnyError < StandardError
+end

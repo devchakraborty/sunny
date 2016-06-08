@@ -1,4 +1,4 @@
-module Joy
+module Sunny
   class ExchangeMessageButton
     attr_accessor :label, :text
     def initialize(label, text)

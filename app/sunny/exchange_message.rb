@@ -1,4 +1,4 @@
-module Joy
+module Sunny
   class ExchangeMessage
     attr_reader :buttons
     def initialize

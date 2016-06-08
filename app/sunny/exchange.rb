@@ -1,4 +1,4 @@
-module Joy
+module Sunny
   class Exchange
     attr_reader :messages
 

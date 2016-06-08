@@ -1,4 +1,4 @@
-Joy::Exchange.new :help do
+Sunny::Exchange.new :help do
   only_if just_expressed_help: :set do
     message do
       text "Sure! You can say hi to me anytime to start a conversation. After we chat, I'll write down how your day went so I can remind you about it later. :)"

@@ -1,4 +1,4 @@
-Joy::Exchange.new :yes_no do
+Sunny::Exchange.new :yes_no do
   only_if awaiting_yes_no: :set do
     only_if just_expressed_yes_no: :unset do
       message do
