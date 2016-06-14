@@ -19,7 +19,7 @@ class ProcessMessageJob < ActiveJob::Base
         return
       end
 
-      response = api_client.text_request text
+      response = api_client.text_request text, {timezone: user.timezone}
       result = response[:result]
 
       p result
