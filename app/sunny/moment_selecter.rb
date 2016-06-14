@@ -8,11 +8,13 @@ module Sunny
     end
 
     def select_time_range(from, to)
-      @moment = Moment.created_by(fb_id).created_between(from, to).shuffled.first
+      @moment = Moment.created_by(fb_id).entered_between(from, to).shuffled.first
     end
 
     def select_date_range(from, to)
-      @moment = select_time_range from.in_time_zone(timezone).beginning_of_day, to.in_time_zone(timezone).end_of_day
+      Time.use_zone(ActiveSupport::TimeZone["UTC"]) do
+        @moment = select_time_range (from.beginning_of_day - timezone.hours), (to.end_of_day - timezone.hours)
+      end
     end
 
     def select_date(date)
@@ -41,7 +43,7 @@ module Sunny
 
     private
     def timezone
-      @timezone ||= ActiveSupport::TimeZone[User.find_by(fb_id: @fb_id).timezone]
+      @timezone ||= User.find_by(fb_id: @fb_id).timezone
     end
   end
 end

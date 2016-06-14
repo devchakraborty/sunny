@@ -56,7 +56,7 @@ module Sunny
       Rails.logger.info "Invoking exchange: #{@label}"
 
       if @stores_moment
-        MomentStorer.store(fb_id, context[:last_user_message])
+        MomentStorer.store(fb_id, context[:last_user_message], context[:last_user_message_at])
       end
 
       if @selects_moment
