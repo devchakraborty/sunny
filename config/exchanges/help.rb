@@ -14,6 +14,7 @@ Sunny::Exchange.new :help do
 
     unset_state :just_expressed_help
     unset_state :awaiting_yes_no
+    unset_state :awaiting_moment
   end
 
   otherwise do
