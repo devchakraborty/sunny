@@ -13,6 +13,7 @@ Sunny::Exchange.new :help do
     end
 
     unset_state :just_expressed_help
+    unset_state :awaiting_yes_no
   end
 
   otherwise do

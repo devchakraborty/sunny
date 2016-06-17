@@ -1,8 +1,4 @@
 Sunny::Exchange.new :remind_me do
-  only_if awaiting_yes_no: :set do
-    invoke_first :yes_no
-  end
-
   only_if awaiting_moment: :set do
     invoke_first :default
   end
@@ -27,6 +23,7 @@ Sunny::Exchange.new :remind_me do
     end
 
     unset_state :just_expressed_remind_me
+    unset_state :awaiting_yes_no
   end
 
   otherwise do

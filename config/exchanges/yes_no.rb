@@ -1,9 +1,7 @@
 Sunny::Exchange.new :yes_no do
   only_if awaiting_yes_no: :set do
     only_if just_expressed_yes_no: :unset do
-      message do
-        text "Sorry, I didn't quite catch that. Is that a yes or a no?"
-      end
+      invoke_first :default
     end
 
     otherwise do
