@@ -9,6 +9,8 @@ class ProcessMessageJob < ActiveJob::Base
 
     if Time.now - at > MESSAGE_TIMEOUT
       Rails.logger.warn "(Discarding message older than #{MESSAGE_TIMEOUT} seconds)"
+    elsif text.blank?
+      Rails.logger.warn "(Discarding blank message)"
     else
       user = User.find_or_create_by_fb_id(fb_id)
       user.context[:last_user_message] = text
