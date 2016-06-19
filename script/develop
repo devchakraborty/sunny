@@ -1,0 +1,18 @@
+#!/bin/zsh
+source ~/.sunny-env
+export RAILS_ENV=development
+ngrok http 3000 >/dev/null &
+
+echo "Waiting for ngrok startup..."
+
+while true; do curl localhost:4040 >/dev/null 2>&1 && echo "ngrok startup complete." && break; sleep 1; done
+
+echo "============================================"
+echo "FACEBOOK WEBHOOK SETUP"
+echo "============================================"
+echo "Endpoint: $(node script/ngrok_host.js)"
+echo "Verify token: ${FB_VERIFY_TOKEN}"
+echo "============================================"
+
+rails server
+kill %1
