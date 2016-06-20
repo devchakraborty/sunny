@@ -2,11 +2,11 @@ Sunny::Exchange.new :moment_2 do
   only_if awaiting_moment: 2 do
     message do
       text 'That\'s awesome! Got any more stories?'
-      button :yes, "Yes"
-      button :no, "No"
+      text 'Nice! Anything else?'
+      text 'Cool! More?'
+      button :no, "Never mind."
     end
 
-    unset_state :awaiting_moment
-    set_state :awaiting_yes_no, 3
+    set_state :awaiting_moment, 3
   end
 end

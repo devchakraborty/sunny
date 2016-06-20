@@ -37,6 +37,10 @@ module Sunny
       @moment.text
     end
 
+    def moment_attachments
+      @moment.attachments
+    end
+
     def moment_at
       "#{time_ago_in_words(@moment.created_at)} ago"
     end

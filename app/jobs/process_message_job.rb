@@ -1,7 +1,7 @@
 class ProcessMessageJob < ActiveJob::Base
   queue_as :default
 
-  MESSAGE_TIMEOUT = 30.seconds
+  MESSAGE_TIMEOUT = 1.minute
 
   def perform(fb_id, at, text, attachments)
     at = Time.at(at)
@@ -30,12 +30,15 @@ class ProcessMessageJob < ActiveJob::Base
           return
         end
 
-        response = api_client.text_request text, {timezone: user.timezone}
-        result = response[:result]
+        action = "default"
 
-        p result
-
-        action = result[:action] || "default"
+        if text.length < 256
+          response = api_client.text_request text, {timezone: user.timezone}
+          result = response[:result]
+          unless result[:action].blank?
+            action = result[:action]
+          end
+        end
 
         case action
         when "yes_no"
