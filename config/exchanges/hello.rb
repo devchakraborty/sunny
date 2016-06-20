@@ -21,9 +21,9 @@ Sunny::Exchange.new :hello do
     message do
       text "Hi #{first_name}! How are things going?"
       text "Hey #{first_name}, what's up?"
-      text "Yo #{first_name}, good to see you! Wanna chat?"
-      text "Hey there #{first_name}, feel like sharing?"
-      text "What's up, #{first_name}? Wanna talk?"
+      text "Yo #{first_name}, good to see you! Let's chat!"
+      text "Hey there #{first_name}! What have you got to share?"
+      text "What's up, #{first_name}? Let's talk!"
       button :no, "Never mind."
     end
 
