@@ -19,6 +19,7 @@ group :development do
   gem 'spring'
 end
 
-gem 'facebook-messenger'
+gem 'facebook-messenger', '~> 0.6.0'
 gem 'koala'
 gem 'api-ai-ruby'
+gem 'lru_redux'

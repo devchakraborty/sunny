@@ -8,6 +8,7 @@ module Sunny
       @set_states = {}
       @label = label
       @invoke_first = []
+      @invoke_last = []
       @stores_moment = false
       @selects_moment = false
       instance_eval(&block)
@@ -41,6 +42,10 @@ module Sunny
       @invoke_first.push(label)
     end
 
+    def invoke_last(label)
+      @invoke_last.push(label)
+    end
+
     def store_moment
       @stores_moment = true
     end
@@ -56,7 +61,7 @@ module Sunny
       Rails.logger.info "Invoking exchange: #{@label}"
 
       if @stores_moment
-        MomentStorer.store(fb_id, context[:last_user_message], context[:last_user_message_at])
+        MomentStorer.store(fb_id, context[:last_user_message], context[:last_user_message_at], context[:last_user_attachments] || [])
       end
 
       if @selects_moment
@@ -80,6 +85,7 @@ module Sunny
         if selecter.moment?
           context[:moment_at] = selecter.moment_at
           context[:moment_text] = selecter.moment_text
+          context[:moment_attachments] = selecter.moment_attachments
         end
       end
 
@@ -111,6 +117,9 @@ module Sunny
 
       @messages.each do |message|
         message.replace(context)
+        if message.moment_attachments
+          message.attachments context[:moment_attachments] # TODO: abstract this
+        end
         Messager.message(fb_id, message)
       end
 
@@ -123,7 +132,11 @@ module Sunny
       end
 
       if @selects_moment
-        context.except!(:found_moment, :moment_at, :moment_text)
+        context.except!(:found_moment, :moment_at, :moment_text, :moment_attachments)
+      end
+
+      @invoke_last.each do |label|
+        context = ExchangeRegistry.get(label).invoke(fb_id, context)
       end
 
       context

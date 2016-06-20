@@ -8,7 +8,8 @@ Sunny::Exchange.new :remind_me do
       end
 
       message do
-        text "\"#{moment_text}\""
+        quoted_text moment_text
+        moment_attachments true
       end
     end
 
