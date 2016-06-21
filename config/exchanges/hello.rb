@@ -4,9 +4,9 @@ Sunny::Exchange.new :hello do
       text "Hi #{first_name}, I'm Sunny!"
     end
 
-    message do
-      text "I'm stuck inside a computer, so unfortunately I don't get out much. Thankfully, I have you to tell me about the world!"
-    end
+    # message do
+    #   text "I'm stuck inside a computer, so unfortunately I don't get out much. Thankfully, I have you to tell me about the world!"
+    # end
 
     message do
       text "My friends say I'm a good listener, I love hearing about their days and reminding them about their brightest moments."
