@@ -26,6 +26,10 @@ Sunny::Exchange.new :yes_no do
     only_if just_expressed_yes_no: "no" do
       message do
         text "Oh okay, that's fine! You can tell me more later."
+        text "No worries! I'll be here."
+        text "Okay! No problem. Talk later!"
+        text "That's cool too! We'll chat later."
+        text "Not a problem! Let's talk another time."
       end
 
       unset_state :awaiting_moment
