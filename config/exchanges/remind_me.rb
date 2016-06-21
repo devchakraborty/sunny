@@ -5,6 +5,10 @@ Sunny::Exchange.new :remind_me do
     only_if found_moment: true do
       message do
         text "Hey #{first_name}, for sure! Remember this from #{moment_at}?:"
+        text "Okay! How about this from #{moment_at}?:"
+        text "Sure! Here's something from #{moment_at}:"
+        text "No problem! This is from #{moment_at}:"
+        text "Your wish is my command! Here's something from #{moment_at}:"
       end
 
       message do

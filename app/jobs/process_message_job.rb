@@ -35,6 +35,7 @@ class ProcessMessageJob < ActiveJob::Base
         if text.length < 256
           response = api_client.text_request text, {timezone: user.timezone}
           result = response[:result]
+          Rails.logger.debug "API AI RESULT #{result}"
           unless result[:action].blank?
             action = result[:action]
           end
