@@ -1,5 +1,7 @@
 Sunny::Exchange.new :attachments do
-  set_state :awaiting_moment, 1
+  only_if awaiting_moment: :unset do
+    set_state :awaiting_moment, 1
+  end
 
   invoke_last :moment
 end
