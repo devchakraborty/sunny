@@ -27,6 +27,8 @@ Sunny::Exchange.new :yes_no do
       message do
         text "Oh okay, that's fine! You can tell me more later."
       end
+
+      unset_state :awaiting_moment
     end
 
     otherwise do

@@ -13,7 +13,5 @@ Sunny::Exchange.new :moment do
     only_if awaiting_moment: 3 do
       invoke_first :moment_3
     end
-
-    unset_state :awaiting_moment
   end
 end
