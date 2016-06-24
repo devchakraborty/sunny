@@ -11,6 +11,7 @@ module Sunny
       @invoke_last = []
       @stores_moment = false
       @selects_moment = false
+      @randoms = []
       instance_eval(&block)
       ExchangeRegistry.register(label, self)
       self
@@ -54,11 +55,23 @@ module Sunny
       @selects_moment = true
     end
 
+    def random(&block)
+      @randoms.push(block)
+    end
+
     # NON-DSL
 
     def invoke(fb_id, context)
 
       Rails.logger.info "Invoking exchange: #{@label}"
+
+      if @randoms.length > 0
+        num_randoms = @randoms.length
+        random_selection = rand(1..num_randoms)
+        block = @randoms[random_selection - 1]
+        label = "#{@label}_random_#{random_selection}"
+        context = Exchange.new(label, &block).invoke(fb_id, context)
+      end
 
       if @stores_moment
         MomentStorer.store(fb_id, context[:last_user_message], context[:last_user_message_at], context[:last_user_attachments] || [])
