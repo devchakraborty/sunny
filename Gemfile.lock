@@ -45,6 +45,7 @@ GEM
       debug_inspector (>= 0.0.1)
     builder (3.2.2)
     byebug (9.0.4)
+    chunky_png (1.3.6)
     coffee-rails (4.1.1)
       coffee-script (>= 2.2.0)
       railties (>= 4.0.0, < 5.1.x)
@@ -78,6 +79,10 @@ GEM
       json (~> 1.8)
       multi_xml (>= 0.5.2)
     i18n (0.7.0)
+    indico (0.9.4)
+      inifile (~> 3.0.0)
+      oily_png (~> 1.2.0)
+    inifile (3.0.0)
     jbuilder (2.4.1)
       activesupport (>= 3.0.0, < 5.1)
       multi_json (~> 1.2)
@@ -106,6 +111,8 @@ GEM
     multipart-post (2.0.0)
     nokogiri (1.6.7.2)
       mini_portile2 (~> 2.0.0.rc2)
+    oily_png (1.2.0)
+      chunky_png (~> 1.3.1)
     pg (0.18.4)
     postgresql (1.0.0)
       pg
@@ -181,6 +188,7 @@ DEPENDENCIES
   api-ai-ruby
   byebug
   facebook-messenger (~> 0.6.0)
+  indico
   jbuilder (~> 2.0)
   jquery-rails
   koala

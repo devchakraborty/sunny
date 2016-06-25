@@ -11,6 +11,7 @@ module Sunny
       @invoke_last = []
       @stores_moment = false
       @selects_moment = false
+      @processes_sentiment = false
       @randoms = []
       instance_eval(&block)
       ExchangeRegistry.register(label, self)
@@ -55,6 +56,10 @@ module Sunny
       @selects_moment = true
     end
 
+    def process_sentiment
+      @processes_sentiment = true
+    end
+
     def random(&block)
       @randoms.push(block)
     end
@@ -65,6 +70,22 @@ module Sunny
 
       Rails.logger.info "Invoking exchange: #{@label}"
 
+      if @processes_sentiment
+        if context[:last_user_message].blank?
+          sentiment = :neutral
+        else
+          sentiment = SentimentAnalyzer.analyze(context[:last_user_message])
+        end
+
+        Rails.logger.info "GOT SENTIMENT #{sentiment.score} #{sentiment.category}"
+
+        context[:last_user_message_sentiment_score] = sentiment.score
+        context[:last_user_message_sentiment_category] = sentiment.category
+      else
+        context[:last_user_message_sentiment_score] = nil
+        context[:last_user_message_sentiment_category] = nil
+      end
+
       if @randoms.length > 0
         num_randoms = @randoms.length
         random_selection = rand(1..num_randoms)
@@ -74,7 +95,7 @@ module Sunny
       end
 
       if @stores_moment
-        MomentStorer.store(fb_id, context[:last_user_message], context[:last_user_message_at], context[:last_user_attachments] || [])
+        MomentStorer.store(fb_id, context[:last_user_message], context[:last_user_message_at], context[:last_user_attachments] || [], context[:last_user_message_sentiment_score] || 0.5)
       end
 
       if @selects_moment
