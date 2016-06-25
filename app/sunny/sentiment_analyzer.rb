@@ -10,7 +10,11 @@ module Sunny
     end
 
     def self.analyze(text)
-      s = score(text)
+      if valid_uri?(text)
+        s = 0.5
+      else
+        s = score(text)
+      end
       if s > POSITIVE_THRESHOLD
         category = :positive
       elsif s > NEUTRAL_THRESHOLD
@@ -28,6 +32,14 @@ module Sunny
         @category = c
         @score = s
       end
+    end
+
+    private
+
+    def self.valid_uri?(uri)
+      !!URI.parse(uri)
+    rescue URI::InvalidURIError
+      false
     end
   end
 end
