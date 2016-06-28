@@ -16,6 +16,7 @@ Sunny::Exchange.new :moment do
         text 'This is great! If you\'ve got any more, feel free to share!'
         text 'Cool! What else is new?'
         text 'Niiiiice. Anything else on your mind?'
+        text 'Cool! What else is on your mind?'
         button :no, 'Never mind.'
       end
     end
