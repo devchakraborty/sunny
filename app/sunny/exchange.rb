@@ -72,7 +72,7 @@ module Sunny
 
       if @processes_sentiment
         if context[:last_user_message].blank?
-          sentiment = :neutral
+          sentiment = SentimentAnalyzer::NEUTRAL
         else
           sentiment = SentimentAnalyzer.analyze(context[:last_user_message])
         end

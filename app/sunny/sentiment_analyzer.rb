@@ -5,6 +5,9 @@ module Sunny
   class SentimentAnalyzer
     NEUTRAL_THRESHOLD = 0.15
     POSITIVE_THRESHOLD = 0.75
+
+    NEUTRAL = SentimentAnalyzerResult.new(:neutral, 0.5)
+
     def self.score(text)
       Indico.sentiment_hq(text)
     end
