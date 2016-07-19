@@ -1,0 +1,22 @@
++ [*] record [*]
+- Great, we're recording! I'll remember whatever you say now.\n
+^ You can ask me to "stop" recording at any time.\n
+^ Let's start small: how's your week going?
+^ {topic=recording}
+^ <set fb_qr_stop_recording=true>
+
++ [*] start recording [*]
+@ record
+
+> topic recording
+
+  + stop [*]
+  - Okay, that's it for now! Let's chat again later.
+  ^ {topic=random}
+
+  + *
+  - <call>storeMoment <star></call>
+  ^ Cool! Anything else?
+  ^ <set fb_qr_stop_recording=true>
+
+< topic

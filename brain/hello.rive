@@ -1,0 +1,39 @@
++ hi
+* <get first_name> == undefined =>
+^ {random}
+^ Hey!|
+^ Yo!|
+^ Hi!
+^ {/random}
+^ <set fb_qr_record=true>
+
+- {random}
+^ Hey, <get first_name>!|
+^ <get first_name>, hi!|
+^ Yo <get first_name>!|
+^ Hi <get first_name>!|
+^ 'Sup, <get first_name>
+^ {/random}
+^ <set fb_qr_record=true>
+
++ hello
+@ hi
+
++ hey
+@ hi
+
++ yo
+@ hi
+
++ what is up
+- Nothing much, just trying to find bananas.
+- Not a lot, just looking to order some Ape Shampoo on Amazon.
+- Not much! Just looking into a sweeeeet deal on a Monkeymobile.
+
++ sup
+@ what is up
+
++ [*] pokemon [*]
+- Team Mystic forever!
+- Gotta catch 'em all!
+- My Bulbasaur is my best friend.

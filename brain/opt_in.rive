@@ -1,0 +1,11 @@
+> topic opt_in
+
+  + *
+  - Hi, I'm Sunny!\n
+  ^ My friends say I'm a good listener.\s
+  ^ I love hearing about their days and reminding them about\s
+  ^ their brightest moments.\n
+  ^ Ask me to "record" at any time and I'll write down what you say.
+  ^ <set opted_in=true>{topic=random}
+
+< topic

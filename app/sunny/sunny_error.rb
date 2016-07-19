@@ -1,2 +1,0 @@
-class SunnyError < StandardError
-end

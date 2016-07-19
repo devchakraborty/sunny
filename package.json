@@ -1,0 +1,41 @@
+{
+  "name": "sunny",
+  "version": "0.1.0",
+  "description": "Sunny chat bot",
+  "main": "build/index.js",
+  "scripts": {
+    "build": "rm -rf build && node_modules/.bin/babel src --out-dir build --source-maps",
+    "build-start": "npm run build && npm run start",
+    "shell": "node script/shell.js",
+    "start": "node build/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/devchakraborty/sunny.git"
+  },
+  "author": "Dev Chakraborty (hello@devc.ca)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/devchakraborty/sunny/issues"
+  },
+  "homepage": "https://github.com/devchakraborty/sunny#readme",
+  "dependencies": {
+    "babel-polyfill": "^6.9.1",
+    "body-parser": "^1.15.2",
+    "botkit": "^0.2.2",
+    "express": "^4.14.0",
+    "express-winston": "^1.4.2",
+    "fb": "^1.1.1",
+    "firebase": "^3.1.0",
+    "lodash": "^4.13.1",
+    "moment": "^2.14.1",
+    "natural": "^0.4.0",
+    "rivescript": "^1.14.0",
+    "winston": "^2.2.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.10.1",
+    "babel-preset-es2015": "^6.9.0"
+  }
+}

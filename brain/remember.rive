@@ -1,0 +1,5 @@
++ [*] remind [*]
+* <call>fetchMoment</call> == undefined => Sorry, I couldn't find anything!
+- Sure! I found this from <get moment_time>:\n
+^ <get moment_text>
+^ <call>sendAttachment image <get moment_image></call>
